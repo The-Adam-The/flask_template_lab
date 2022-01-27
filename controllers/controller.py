@@ -20,3 +20,12 @@ def add_event():
     new_event = Event(event_date, event_name, number_of_guests, room_name, description, recurring)
     add_event_to_list(new_event)
     return render_template('index.html', event_list=event_list)
+
+@app.route('/eventlist/delete/<event_name>')
+def delete_event(event_name):
+    for event in event_list:
+        if event.name == event_name:
+            event_list.remove(event)
+        
+        print(event_list)
+    return f"Event: {event_name} deleted"
