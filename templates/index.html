@@ -2,49 +2,75 @@
 
 {% block content%}
 
-    <form action="/eventlist" method="post" >
-
-        <label for="event_name">Event Name:</label>
-        <input type="text" name="event_name" id="event_name">
-        <label for="event_date">Event Date:</label>
-        <input type="text" name="event_date" id="event_date">
-        <label for="number_of_guests">Numbers of Guests:</label>
-        <input type="text" name="number_of_guests" id="number_of_guests">
-        <label for="room_name">Room Name</label>
-        <input type="text" name="room_name" id="room_name">
-        <label for="description">Provide a description:</label>
-        <textarea name="description" id="description" cols="30" rows="10"></textarea>
-        <p>Is this a recurring event?</p>
-        <label for="recurring">Yes</label>
-        <input type="radio" name="recurring" value="yes">
-        <label for="recurring">No</label>
-        <input type="radio" name="recurring" id="no">
+    <form action="/eventlist" class="form" method="post" >
+        <div class="text-questions">
+            <div>
+                <label class="event-name-label" for="event_name">Event Name:</label>
+                <input type="text" name="event_name" id="event-name">
+            </div>
+            <br>
+            <div>
+                <label class="event-date-label" for="event_date">Event Date:</label>
+                <input type="date" name="event_date" id="event-date">
+            </div>
+            <br>
+            <div>   
+                <label class="number-of-guests-label" for="number_of_guests">Numbers of Guests:</label>
+                <input type="number" name="number_of_guests" id="number-of-guests">
+            </div>
+            <br>
+            <div>
+                <label class="room-name-label"for="room_name">Room Name:</label>
+                <input type="text" name="room_name" id="room-name">
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="description-box">
+            <label for="description">Provide a description:</label>
+            <textarea name="description" id="description" cols="30" rows="10"></textarea>
+        </div>
+        <br>
+        <div class="recurring-question">
+            <p>Is this a recurring event?</p>
+            <div class="radio-buttons">
+                <label for="recurring">Yes</label>
+                <input type="radio" name="recurring" value="yes">
+                <label for="recurring">No</label>
+                <input type="radio" name="recurring" id="no">
+            </div>
+        </div>
+        <br>
         <input type="submit" value="Add Event">
-
     </form>
+    <br>
+    <br>
+    
 
+
+    <h2>Current Events List</h2>
     {% for event in event_list %}
         <ul>
             <li>
-                <p>Event name: {{event.name }} </p>
+                <p><strong>Event Name:</strong> {{event.name }} </p>
             </li>
             <li>
-                <p>Event date: {{ event.date }}</p>
+                <p> <strong>Date:</strong> {{ event.date }}</p>
             </li>
             <li>
-                <p>Number of guests: {{ event.number_of_guests }}</p>
+                <p><strong>Number of guests:</strong> {{ event.number_of_guests }}</p>
             </li>
             <li>
-                <p>Room: {{ event.room_name }}</p>
+                <p><strong>Room:</strong>{{ event.room_name }}</p>
             </li>
             <li>
-                <p>Description: {{ event.description }}</p>
+                <p><strong>Description:</strong> {{ event.description }}</p>
             </li>
             <li>
                 {% if event.recurring == True %}
-                    <p>Recurring: &#9989;</p>
+                    <p><strong>Recurring:</strong> &#9989;</p>
                     {% else %}
-                    <p>Recurring: &#10060</p>    
+                    <p><strong>Recurring:</strong> &#10060</p>    
                 {% endif %}
             </li>
             <hr>
