@@ -20,4 +20,3 @@ class TestEvent(unittest.TestCase):
 
     def test_object_has_description(self):
         self.assertEqual("Sarah's 21st Birthday Party", self.sarahs_party.description)
-

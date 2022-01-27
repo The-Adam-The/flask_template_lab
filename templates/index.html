@@ -1,3 +1,30 @@
-<html>
-    <h1>Howdy</h1>
-</html>
+{% extends "base.html" %}
+
+{% block content%}
+
+    <form action="/eventlist" method="post" >
+
+        <label for="event_name">Event Name:</label>
+        <input type="text" name="event_name" id="event_name">
+        <label for="event_date">Event Date:</label>
+        <input type="text" name="event_date" id="event_date">
+        <label for="number_of_guests">Numbers of Guests:</label>
+        <input type="text" name="number_of_guests" id="number_of_guests">
+        <label for="room_name">Room Name</label>
+        <input type="text" name="room_name" id="room_name">
+        <label for="description">Provide a description:</label>
+        <textarea name="description" id="description" cols="30" rows="10"></textarea>
+        <input type="submit" value="Add Event">
+
+    </form>
+
+    {% for event in event_list %}
+        <ul>
+            <li>
+                <p>{{event.name }} </p>
+            </li>
+        </ul>
+    {% endfor %}
+
+{% endblock %}
+
