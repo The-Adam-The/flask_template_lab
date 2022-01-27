@@ -14,6 +14,11 @@
         <input type="text" name="room_name" id="room_name">
         <label for="description">Provide a description:</label>
         <textarea name="description" id="description" cols="30" rows="10"></textarea>
+        <p>Is this a recurring event?</p>
+        <label for="recurring">Yes</label>
+        <input type="radio" name="recurring" value="yes">
+        <label for="recurring">No</label>
+        <input type="radio" name="recurring" id="no">
         <input type="submit" value="Add Event">
 
     </form>
@@ -21,8 +26,28 @@
     {% for event in event_list %}
         <ul>
             <li>
-                <p>{{event.name }} </p>
+                <p>Event name: {{event.name }} </p>
             </li>
+            <li>
+                <p>Event date: {{ event.date }}</p>
+            </li>
+            <li>
+                <p>Number of guests: {{ event.number_of_guests }}</p>
+            </li>
+            <li>
+                <p>Room: {{ event.room_name }}</p>
+            </li>
+            <li>
+                <p>Description: {{ event.description }}</p>
+            </li>
+            <li>
+                {% if event.recurring == True %}
+                    <p>Recurring: &#9989;</p>
+                    {% else %}
+                    <p>Recurring: &#10060</p>    
+                {% endif %}
+            </li>
+            <hr>
         </ul>
     {% endfor %}
 
